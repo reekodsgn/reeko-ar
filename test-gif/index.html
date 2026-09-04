@@ -1,0 +1,35 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Reeko WebAR</title>
+<script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gifuct-js@2.1.2/dist/gifuct-js.min.js"><\/script>
+<style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000;font-family:Inter,system-ui,sans-serif}#ui{position:fixed;inset:0;z-index:10;pointer-events:none}#hint{position:absolute;top:18px;left:50%;transform:translateX(-50%);background:rgba(20,20,20,.7);color:#fff;padding:10px 14px;border-radius:999px;font-size:13px}#cta{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);background:#fff;color:#111;border-radius:999px;padding:14px 18px;text-decoration:none;font-weight:700;display:none;pointer-events:auto}</style>
+</head><body>
+<div id="ui"><div id="hint">Inquadra la grafica</div><a id="cta" href="https://www.reeko.co/" target="_blank" rel="noopener">Scopri Reeko ↗</a></div>
+<a-scene mindar-image="imageTargetSrc:targets.mind;autoStart:true;uiScanning:no" color-space="sRGB" renderer="colorManagement:true" vr-mode-ui="enabled:false" device-orientation-permission-ui="enabled:false">
+<a-assets><canvas id="gifCanvas"></canvas></a-assets><a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
+<a-entity id="target" mindar-image-target="targetIndex:0"><a-plane id="arContent" material="src:#gifCanvas;transparent:true;shader:flat" position="0.000 0.010 0.02" rotation="0 0 0" width="0.640" height="0.640" animation="property:position;from:0 -0.019999999999999997 0.02;to:0 0.04 0.02;dur:1800;dir:alternate;loop:true;easing:easeInOutSine"></a-plane></a-entity></a-scene>
+<script>
+const target=document.querySelector("#target"),cta=document.querySelector("#cta"),hint=document.querySelector("#hint"),asset=document.querySelector("#asset");
+target.addEventListener("targetFound",()=>{cta.style.display="block";hint.textContent="Esperienza attiva";if(asset&&asset.tagName==="VIDEO")asset.play().catch(()=>{})});
+target.addEventListener("targetLost",()=>{cta.style.display="none";hint.textContent="Inquadra la grafica";if(asset&&asset.tagName==="VIDEO")asset.pause()});
+</script>
+<script>
+(async function(){
+ const canvas=document.querySelector("#gifCanvas"),ctx=canvas.getContext("2d");
+ const buf=await fetch("overlay.gif").then(r=>r.arrayBuffer());
+ const gif=gifuctjs.parseGIF(buf),frames=gifuctjs.decompressFrames(gif,true);
+ canvas.width=gif.lsd.width;canvas.height=gif.lsd.height;
+ let i=0,prev=null;
+ function step(){
+   if(prev&&prev.disposalType===2){const d=prev.dims;ctx.clearRect(d.left,d.top,d.width,d.height)}
+   const f=frames[i],img=new ImageData(f.patch,f.dims.width,f.dims.height);
+   ctx.putImageData(img,f.dims.left,f.dims.top);
+   const plane=document.querySelector("#arContent");
+   if(plane&&plane.getObject3D("mesh")){const m=plane.getObject3D("mesh").material;if(m&&m.map)m.map.needsUpdate=true}
+   prev=f;i=(i+1)%frames.length;setTimeout(step,Math.max(20,f.delay||100));
+ }
+ step();
+})();
+</script>
+</body></html>
