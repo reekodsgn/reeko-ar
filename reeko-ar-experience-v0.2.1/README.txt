@@ -1,7 +1,7 @@
 REEKO AR STUDIO · V0.2.2
 
 Target: target.png
-Layer: 1
+Layer: 3
 
 targets.mind è stato generato automaticamente da Reeko AR Studio ed è già incluso nello ZIP.
 
