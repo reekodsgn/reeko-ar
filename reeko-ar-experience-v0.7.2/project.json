@@ -1,0 +1,123 @@
+{
+  "version": "0.7.2",
+  "target": "target.png",
+  "targetAspect": 0.6684155299055614,
+  "layers": [
+    {
+      "id": "l3ux8ik1",
+      "name": "tiger.gif",
+      "kind": "GIF",
+      "aspect": 0.5625879043600562,
+      "x": 0,
+      "y": 0,
+      "scale": 55,
+      "rot": 0,
+      "opacity": 100,
+      "anim": "none",
+      "visible": false,
+      "loadMode": "tap",
+      "gifPlayback": "onceHide",
+      "filename": "layer-01.gif"
+    },
+    {
+      "id": "lerlb62c",
+      "name": "Hello.gif",
+      "kind": "GIF",
+      "aspect": 0.7329992841803865,
+      "x": -63.52822918411795,
+      "y": 16.80594048318916,
+      "scale": 55,
+      "rot": 0,
+      "opacity": 100,
+      "anim": "none",
+      "filename": "layer-02.gif"
+    }
+  ],
+  "hotspots": [
+    {
+      "id": "h90vdr33",
+      "name": "Hotspot 01",
+      "x": -0.013611995309097,
+      "y": 9.854147420284987,
+      "w": 35,
+      "h": 20,
+      "action": "loadshow",
+      "url": "https://www.reeko.co/",
+      "open": "same",
+      "targetLayerId": "l3ux8ik1"
+    }
+  ],
+  "ui": {
+    "layers": [
+      {
+        "id": "l3ux8ik1",
+        "file": {},
+        "url": "blob:null/e8c6c381-8d64-452c-96c2-40d12239b33a",
+        "name": "tiger.gif",
+        "kind": "GIF",
+        "aspect": 0.5625879043600562,
+        "x": 0,
+        "y": 0,
+        "scale": 55,
+        "rot": 0,
+        "opacity": 100,
+        "anim": "none",
+        "loadMode": "tap",
+        "visible": false,
+        "gifPlayback": "onceHide",
+        "filename": "layer-01.gif"
+      },
+      {
+        "id": "lerlb62c",
+        "file": {},
+        "url": "blob:null/4234eccb-c260-48bc-a0df-f60cacda26e4",
+        "name": "Hello.gif",
+        "kind": "GIF",
+        "aspect": 0.7329992841803865,
+        "x": -63.52822918411795,
+        "y": 16.80594048318916,
+        "scale": 55,
+        "rot": 0,
+        "opacity": 100,
+        "anim": "none",
+        "filename": "layer-02.gif"
+      }
+    ],
+    "hotspots": [
+      {
+        "id": "h90vdr33",
+        "name": "Hotspot 01",
+        "x": -0.013611995309097,
+        "y": 9.854147420284987,
+        "w": 35,
+        "h": 20,
+        "action": "loadshow",
+        "url": "https://www.reeko.co/",
+        "open": "same",
+        "targetLayerId": "l3ux8ik1"
+      }
+    ],
+    "targetAspect": 0.6684155299055614,
+    "brand": {
+      "logo": "",
+      "pos": "tc",
+      "width": 92
+    },
+    "scan": {
+      "text": "Inquadra questo visual",
+      "sub": "Tieni il visual dentro l'inquadratura",
+      "showThumb": true,
+      "thumbSize": 88,
+      "pos": "mc"
+    },
+    "cta": {
+      "enabled": true,
+      "text": "Scopri Reeko ↗",
+      "url": "https://www.reeko.co/",
+      "bg": "#ffffff",
+      "fg": "#111111",
+      "icon": "",
+      "pos": "bc"
+    }
+  }
+}

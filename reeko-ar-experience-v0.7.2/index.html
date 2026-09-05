@@ -1,0 +1,66 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>Reeko WebAR</title><script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script><style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#111;font-family:Inter,system-ui,-apple-system,sans-serif}video{position:fixed!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;z-index:0!important}a-scene{position:fixed!important;inset:0!important;z-index:1!important;background:transparent!important}#ui{position:fixed;inset:0;z-index:20;pointer-events:none}#brandLogo{position:absolute;top:18px;left:50%;transform:translateX(-50%);width:92px;max-height:48px;object-fit:contain;z-index:5}#cta img{width:18px;height:18px;object-fit:contain}#scanGuide{position:absolute;top:50%;left:50%;transform:translateY(-50%) translateX(-50%);display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;width:260px;max-width:76%}#scanGuide img{width:88px;height:auto;max-width:70%;max-height:190px;object-fit:contain;border-radius:10px;box-shadow:0 8px 26px rgba(0,0,0,.2)}#scanText{background:rgba(18,18,18,.72);color:white;padding:9px 13px;border-radius:999px;font-size:13px;font-weight:800}#scanSub{font-size:11px;color:white;text-shadow:0 1px 4px rgba(0,0,0,.5)}#cta{position:absolute;height:48px;min-height:48px;box-sizing:border-box;bottom:22px;left:50%;transform:translateX(-50%);background:#ffffff;color:#111111;padding:14px 18px;border-radius:999px;text-decoration:none;font-weight:800;display:none;pointer-events:auto;white-space:nowrap;align-items:center;gap:8px}</style></head><body><div id="ui"><div id="scanGuide"><img src="target.png" alt=""><div id="scanText">Inquadra questo visual</div><div id="scanSub">Tieni il visual dentro l&#39;inquadratura</div></div><a id="cta" href="https://www.reeko.co/" target="_blank" rel="noopener"><span>Scopri Reeko ↗</span></a></div><a-scene mindar-image="imageTargetSrc:targets.mind;autoStart:false;uiScanning:no" color-space="sRGB" renderer="colorManagement:true;alpha:true" background="transparent:true" vr-mode-ui="enabled:false" device-orientation-permission-ui="enabled:false"><a-assets><canvas id="gif0"></canvas><canvas id="gif1"></canvas></a-assets><a-camera position="0 0 0" look-controls="enabled:false" cursor="rayOrigin:mouse" raycaster="objects:.hotspot"></a-camera><a-entity id="target" mindar-image-target="targetIndex:0"><a-plane id="layer0" material="src:#gif0;transparent:true;shader:flat;opacity:1;side:double" position="0.0000 0.0000 0.0200" rotation="0 0 0" width="0.5500" height="0.9776" visible="false" ></a-plane>
+<a-plane id="layer1" material="src:#gif1;transparent:true;shader:flat;opacity:1;side:double" position="-0.6353 0.2514 0.0220" rotation="0 0 0" width="0.5500" height="0.7503" visible="true" ></a-plane><a-plane class="hotspot" data-action="loadshow" data-url="https://www.reeko.co/" data-open="same" data-layer="l3ux8ik1" position="-0.0001 0.1474 0.1800" width="0.3500" height="0.2992" material="color:#ffffff;transparent:true;opacity:0.001;shader:flat;side:double"></a-plane></a-entity></a-scene><script type="module">import {parseGIF,decompressFrames} from 'https://esm.sh/gifuct-js@2.1.2';const scene=document.querySelector('a-scene'),target=document.querySelector('#target'),cta=document.querySelector('#cta'),scan=document.querySelector('#scanGuide');let started=false;async function startAR(){if(started)return;started=true;try{await scene.systems['mindar-image-system'].start();document.body.style.background='transparent';scan.style.display='flex'}catch(err){started=false;console.error(err)}}scene.addEventListener('loaded',()=>{startAR();});target.addEventListener('targetFound',()=>{scan.style.display='none';cta.style.display=cfg.cta.enabled===false?'none':'inline-flex'});target.addEventListener('targetLost',()=>{cta.style.display='none';scan.style.display='flex'});const lazyLoaded=new Set();
+async function loadLayer(idx){
+ const l=cfg.layers[idx],el=document.querySelector('#layer'+idx);if(!l||!el)return;
+ if(l.kind==='GIF'){
+   await playGif(idx,l.filename,l.gifPlayback||'loop',l.gifRetrigger||'restart');
+   lazyLoaded.add(idx);return
+ }
+ if(lazyLoaded.has(idx)){el.setAttribute('visible',true);return}
+ {
+   await new Promise((resolve,reject)=>{
+     const img=new Image();img.crossOrigin='anonymous';
+     img.onload=()=>{let asset=document.querySelector('#asset'+idx);if(!asset){asset=document.createElement('img');asset.id='asset'+idx;asset.crossOrigin='anonymous';document.querySelector('a-assets').appendChild(asset)}asset.src=l.filename;el.setAttribute('src','#asset'+idx);setTimeout(resolve,0)};
+     img.onerror=reject;img.src=l.filename
+   })
+ }
+ lazyLoaded.add(idx);el.setAttribute('visible',true)
+}
+document.querySelectorAll('.hotspot').forEach(h=>h.addEventListener('click',async()=>{
+ const action=h.dataset.action||'url';
+ if(action==='url'){const url=h.dataset.url;if(!url)return;if(h.dataset.open==='new')window.open(url,'_blank','noopener');else window.location.href=url;return}
+ const id=h.dataset.layer,idx=cfg.layers.findIndex(l=>l.id===id);if(idx<0)return;const el=document.querySelector('#layer'+idx);if(!el)return;
+ if(action==='loadshow'){try{await loadLayer(idx)}catch(err){console.error('Lazy layer load failed',err)}return}
+ if(action==='show')el.setAttribute('visible',true);
+ if(action==='hide')el.setAttribute('visible',false);
+ if(action==='toggle')el.setAttribute('visible',!el.getAttribute('visible'));
+}));const gifCache=new Map(),gifRun=new Map();
+async function ensureGif(i,url){
+ if(gifCache.has(i))return gifCache.get(i);
+ const p=(async()=>{const canvas=document.querySelector('#gif'+i),ctx=canvas.getContext('2d'),buf=await fetch(url).then(r=>{if(!r.ok)throw new Error('GIF '+r.status);return r.arrayBuffer()}),gif=parseGIF(buf),frames=decompressFrames(gif,true);canvas.width=gif.lsd.width;canvas.height=gif.lsd.height;return {canvas,ctx,frames}})();
+ gifCache.set(i,p);return p
+}
+async function playGif(i,url,mode='loop',retrigger='restart'){
+ const existing=gifRun.get(i);
+ if(existing?.running){
+   if(retrigger==='ignore')return;
+   existing.token.cancelled=true
+ }
+ const {canvas,ctx,frames}=await ensureGif(i,url);
+ const plane=document.querySelector('#layer'+i);if(!plane||!frames.length)return;
+ const token={cancelled:false},state={running:true,token};gifRun.set(i,state);
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ let fi=0,prev=null;
+ return new Promise(resolve=>{
+   function step(){
+     if(token.cancelled){state.running=false;resolve();return}
+     if(prev&&prev.disposalType===2){const d=prev.dims;ctx.clearRect(d.left,d.top,d.width,d.height)}
+     const f=frames[fi],img=new ImageData(f.patch,f.dims.width,f.dims.height);
+     ctx.putImageData(img,f.dims.left,f.dims.top);
+     const mesh=plane.getObject3D('mesh'),map=mesh?.material?.map;if(map)map.needsUpdate=true;
+     plane.setAttribute('visible',true);
+     prev=f;fi++;
+     if(fi>=frames.length){
+       if(mode==='loop'){fi=0}
+       else{
+         state.running=false;
+         if(mode==='onceHide')plane.setAttribute('visible',false);
+         resolve();return
+       }
+     }
+     setTimeout(step,Math.max(20,f.delay||100))
+   }
+   step()
+ })
+}
+playGif(1,'layer-02.gif','loop','restart');</script><script>window.addEventListener('load',()=>{const s=document.querySelector('a-scene');s.addEventListener('loaded',()=>{const r=s.renderer;if(r){r.setClearColor(0x000000,0);r.setClearAlpha(0)}})});</script></body></html>
