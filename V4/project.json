@@ -1,0 +1,35 @@
+{
+  "version": "0.3.1",
+  "target": "target.png",
+  "targetAspect": 0.6684155299055614,
+  "layers": [
+    {
+      "id": "l2facg62",
+      "name": "tiger.gif",
+      "kind": "GIF",
+      "aspect": 0.5625879043600562,
+      "x": 0,
+      "y": 0,
+      "scale": 72,
+      "rot": 0,
+      "opacity": 100,
+      "anim": "none",
+      "filename": "layer-01.gif"
+    },
+    {
+      "id": "lsucg3qz",
+      "name": "logo.png",
+      "kind": "PNG",
+      "aspect": 1.3893805309734513,
+      "x": -80.54205441289787,
+      "y": 34.850045560793944,
+      "scale": 55,
+      "rot": 0,
+      "opacity": 100,
+      "anim": "none",
+      "filename": "layer-02.png"
+    }
+  ],
+  "cta": "Scopri Reeko ↗",
+  "url": "https://www.reeko.co/"
+}
