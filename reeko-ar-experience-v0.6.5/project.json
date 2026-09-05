@@ -1,0 +1,73 @@
+{
+  "version": "0.6.5",
+  "target": "target.png",
+  "targetAspect": 0.6684155299055614,
+  "layers": [
+    {
+      "id": "lou5b2uo",
+      "name": "tiger.gif",
+      "kind": "GIF",
+      "aspect": 0.5625879043600562,
+      "x": 0,
+      "y": 0,
+      "scale": 80.79586324831237,
+      "rot": 0,
+      "opacity": 100,
+      "anim": "none",
+      "filename": "layer-01.gif"
+    }
+  ],
+  "ui": {
+    "layers": [
+      {
+        "id": "lou5b2uo",
+        "file": {},
+        "url": "blob:null/faf72924-96d1-4401-b57d-9c3e3e39d41d",
+        "name": "tiger.gif",
+        "kind": "GIF",
+        "aspect": 0.5625879043600562,
+        "x": 0,
+        "y": 0,
+        "scale": 80.79586324831237,
+        "rot": 0,
+        "opacity": 100,
+        "anim": "none",
+        "filename": "layer-01.gif"
+      }
+    ],
+    "targetAspect": 0.6684155299055614,
+    "brand": {
+      "logo": "brand-logo.svg",
+      "pos": "tl",
+      "width": 50
+    },
+    "activation": {
+      "enabled": true,
+      "text": "Mostra visual",
+      "bg": "#171717",
+      "fg": "#ffffff",
+      "icon": "",
+      "pos": "bc",
+      "targetPos": "mc",
+      "pageBg": "#000000",
+      "bgImage": "",
+      "showTarget": true,
+      "targetSize": 105
+    },
+    "scan": {
+      "text": "Inquadra questo visual",
+      "sub": "Tieni il visual dentro l'inquadratura",
+      "showThumb": true,
+      "thumbSize": 104,
+      "pos": "mc"
+    },
+    "cta": {
+      "text": "Scopri Reeko ↗",
+      "url": "https://www.reeko.co/",
+      "bg": "#e392fe",
+      "fg": "#111111",
+      "icon": "",
+      "pos": "bc"
+    }
+  }
+}
