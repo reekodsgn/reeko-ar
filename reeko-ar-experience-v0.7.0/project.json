@@ -1,0 +1,141 @@
+{
+  "version": "0.7.0",
+  "target": "target.png",
+  "targetAspect": 0.6684155299055614,
+  "layers": [
+    {
+      "id": "lvbcyp5p",
+      "name": "Hello.gif",
+      "kind": "GIF",
+      "aspect": 0.7329992841803865,
+      "x": -66.68469442942131,
+      "y": 14.41305990995432,
+      "scale": 55,
+      "rot": 0,
+      "opacity": 100,
+      "anim": "none",
+      "filename": "layer-01.gif"
+    },
+    {
+      "id": "ljte0ium",
+      "name": "snowy-mountain-range-on-transparent-background-for-nature-and-landscape-png.png",
+      "kind": "PNG",
+      "aspect": 1.7771428571428571,
+      "x": 3.5252470622941114,
+      "y": -27.942916296953566,
+      "scale": 122.22899845314613,
+      "rot": 0,
+      "opacity": 100,
+      "anim": "none",
+      "filename": "layer-02.png"
+    }
+  ],
+  "hotspots": [
+    {
+      "id": "h6tdk43y",
+      "name": "Hotspot 01",
+      "x": -2.9340183883180107,
+      "y": 12.732097669985869,
+      "w": 35,
+      "h": 20,
+      "action": "toggle",
+      "url": "https://www.reeko.co/",
+      "open": "same",
+      "targetLayerId": "lvbcyp5p"
+    },
+    {
+      "id": "hb5krnck",
+      "name": "Hotspot 02",
+      "x": 30.327203893996757,
+      "y": -33.70551118998324,
+      "w": 35,
+      "h": 20,
+      "action": "toggle",
+      "url": "https://www.reeko.co/",
+      "open": "same",
+      "targetLayerId": "ljte0ium"
+    }
+  ],
+  "ui": {
+    "layers": [
+      {
+        "id": "lvbcyp5p",
+        "file": {},
+        "url": "blob:null/8d9a4ff1-225b-42b3-b0c9-02466a9dc2cb",
+        "name": "Hello.gif",
+        "kind": "GIF",
+        "aspect": 0.7329992841803865,
+        "x": -66.68469442942131,
+        "y": 14.41305990995432,
+        "scale": 55,
+        "rot": 0,
+        "opacity": 100,
+        "anim": "none",
+        "filename": "layer-01.gif"
+      },
+      {
+        "id": "ljte0ium",
+        "file": {},
+        "url": "blob:null/5faecbc3-74d4-4e2b-bb9e-5e66bbd8a8fa",
+        "name": "snowy-mountain-range-on-transparent-background-for-nature-and-landscape-png.png",
+        "kind": "PNG",
+        "aspect": 1.7771428571428571,
+        "x": 3.5252470622941114,
+        "y": -27.942916296953566,
+        "scale": 122.22899845314613,
+        "rot": 0,
+        "opacity": 100,
+        "anim": "none",
+        "filename": "layer-02.png"
+      }
+    ],
+    "hotspots": [
+      {
+        "id": "h6tdk43y",
+        "name": "Hotspot 01",
+        "x": -2.9340183883180107,
+        "y": 12.732097669985869,
+        "w": 35,
+        "h": 20,
+        "action": "toggle",
+        "url": "https://www.reeko.co/",
+        "open": "same",
+        "targetLayerId": "lvbcyp5p"
+      },
+      {
+        "id": "hb5krnck",
+        "name": "Hotspot 02",
+        "x": 30.327203893996757,
+        "y": -33.70551118998324,
+        "w": 35,
+        "h": 20,
+        "action": "toggle",
+        "url": "https://www.reeko.co/",
+        "open": "same",
+        "targetLayerId": "ljte0ium"
+      }
+    ],
+    "targetAspect": 0.6684155299055614,
+    "brand": {
+      "logo": "",
+      "pos": "tc",
+      "width": 92
+    },
+    "scan": {
+      "text": "Inquadra questo visual",
+      "sub": "Tieni il visual dentro l'inquadratura",
+      "showThumb": true,
+      "thumbSize": 88,
+      "pos": "mc"
+    },
+    "cta": {
+      "enabled": true,
+      "text": "Scopri Reeko ↗",
+      "url": "https://www.reeko.co/",
+      "bg": "#ffffff",
+      "fg": "#111111",
+      "icon": "",
+      "pos": "bc"
+    }
+  }
+}
