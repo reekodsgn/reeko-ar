@@ -1,0 +1,47 @@
+{
+  "version": "0.2.1",
+  "target": "target.png",
+  "layers": [
+    {
+      "id": "lmfowfkb",
+      "name": "tiger.gif",
+      "kind": "GIF",
+      "aspect": 0.5625879043600562,
+      "x": -0.08742813111256002,
+      "y": 0.05744621845410245,
+      "scale": 82,
+      "rot": 0,
+      "opacity": 100,
+      "anim": "none",
+      "filename": "layer-01.gif"
+    },
+    {
+      "id": "lantmz8r",
+      "name": "target.png",
+      "kind": "PNG",
+      "aspect": 0.6684155299055614,
+      "x": -78,
+      "y": -43.323877817836056,
+      "scale": 31.123695687914612,
+      "rot": 0,
+      "opacity": 100,
+      "anim": "none",
+      "filename": "layer-02.png"
+    },
+    {
+      "id": "lmvsflp1",
+      "name": "tiger.gif",
+      "kind": "GIF",
+      "aspect": 0.5625879043600562,
+      "x": 50,
+      "y": 38,
+      "scale": 29,
+      "rot": 0,
+      "opacity": 100,
+      "anim": "none",
+      "filename": "layer-03.gif"
+    }
+  ],
+  "cta": "Scopri Reeko ↗",
+  "url": "https://www.reeko.co/"
+}
